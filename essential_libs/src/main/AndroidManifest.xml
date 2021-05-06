@@ -10,6 +10,7 @@
         <activity
             android:name=".common.WebViewActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Default.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
     </application>
