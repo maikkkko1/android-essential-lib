@@ -1,7 +1,8 @@
-# android-form-validators-lib
+# android-essential-lib
 
-This is a library that aims to assist in the validation of forms in Android development.
+This is a library that aims to assist in the Android development.
 
+## Form Validator
 Available validations:
 
 ```kotlin
@@ -107,6 +108,26 @@ buttonDefault.setOnClickListener {
 }
 ```
 
+## Common Utils
+```kotlin
+val commonManager = CommonManager(activity = this)
+
+// Open an internal WebView
+commonManager.openWebView("https://www.google.com/")
+
+// Call a phone number
+commonManager.callPhoneNumber("+55 51 11111111")
+
+// Schedule a date on the calendar
+commonManager.scheduleItemOnAndroidCalendar(
+                    ScheduleItemAndroidCalendar(
+                            startDate = Date(),
+                            endDate = Date(Date().time + (1000 * 60 * 60 * 24)),
+                            eventTitle = "Event test"
+                    )
+            )
+```
+
 ### Installation
 Add it in your root build.gradle at the end of repositories:
 ```gradle
@@ -121,6 +142,6 @@ allprojects {
 Add the dependency
 ```gradle
 dependencies {
-  implementation 'com.github.maikkkko1:android-form-validators-lib:1.0'
+  implementation 'com.github.maikkkko1:android-essential-lib:master-SNAPSHOT'
 }
 ```
