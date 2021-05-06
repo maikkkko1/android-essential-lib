@@ -142,6 +142,6 @@ allprojects {
 Add the dependency
 ```gradle
 dependencies {
-  implementation 'com.github.maikkkko1:android-form-validators-lib:1.0'
+  implementation 'com.github.maikkkko1:android-essential-lib:master-SNAPSHOT'
 }
 ```
