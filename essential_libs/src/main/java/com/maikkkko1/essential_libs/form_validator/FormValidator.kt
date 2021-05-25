@@ -35,10 +35,11 @@ object FormValidator {
 
                 if (showInputError) {
                     item.container.apply {
-                        if (errorIcon != null) errorIconDrawable = errorIcon
+                        errorIconDrawable = errorIcon
 
                         error = validateForm.message
                     }
+
                     item.container.error = validateForm.message
                 } else item.container.error = null
             } else {
