@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         val defaultInput = findViewById<EditText>(R.id.defaultInput)
 
         val validationRules: List<ValidatorRule> = listOf(
-                ValidatorRule.MustNotBeEmptyOrNull)
+                ValidatorRule.MustNotBeEmptyOrNull())
 
         val materialInputsToValidate = mutableListOf(
                 FormValidatorMaterialInput(

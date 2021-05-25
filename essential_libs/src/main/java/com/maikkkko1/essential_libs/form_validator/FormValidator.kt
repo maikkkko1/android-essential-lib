@@ -5,11 +5,12 @@ import com.maikkkko1.essential_libs.form_validator.entity.FormValidatorDefaultIn
 import com.maikkkko1.essential_libs.form_validator.entity.FormValidatorMaterialInput
 
 object FormValidator {
-    fun validate(inputs: List<FormValidatorMaterialInput>, showInputError: Boolean = false, errorIcon: Drawable? = null): Boolean =
+    fun validate(inputs: List<FormValidatorMaterialInput>, showInputError: Boolean = false, isBorderlessInput: Boolean = false, errorIcon: Drawable? = null): Boolean =
         validateMaterialInput(
             inputs = inputs,
             showInputError = showInputError,
-            errorIcon = errorIcon
+            errorIcon = errorIcon,
+            isBorderlessInput = isBorderlessInput
         )
 
     fun validate(inputs: List<FormValidatorDefaultInput>, showInputError: Boolean = false): Boolean =
@@ -18,7 +19,7 @@ object FormValidator {
             showInputError = showInputError
         )
 
-    private fun validateMaterialInput(inputs: List<FormValidatorMaterialInput>, showInputError: Boolean, errorIcon: Drawable? = null): Boolean {
+    private fun validateMaterialInput(inputs: List<FormValidatorMaterialInput>, showInputError: Boolean, isBorderlessInput: Boolean, errorIcon: Drawable? = null): Boolean {
         var isAtLeastOneInputWithError = false
 
         for (item in inputs) {
@@ -38,12 +39,14 @@ object FormValidator {
                         errorIconDrawable = errorIcon
 
                         error = validateForm.message
+                        if (isBorderlessInput) boxStrokeWidth = 2
                     }
 
                     item.container.error = validateForm.message
                 } else item.container.error = null
             } else {
                 item.container.error = null
+                if (isBorderlessInput) item.container.boxStrokeWidth = 0
             }
         }
 
