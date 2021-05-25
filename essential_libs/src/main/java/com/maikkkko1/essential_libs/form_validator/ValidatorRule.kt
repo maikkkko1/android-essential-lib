@@ -3,10 +3,10 @@ package com.maikkkko1.essential_libs.form_validator
 import java.util.*
 
 sealed class ValidatorRule {
-    object MustHaveLetterAndNumbers: ValidatorRule()
-    object MustNotBeEmptyOrNull: ValidatorRule()
-    object MustBeValidEmail: ValidatorRule()
-    object MustBeValidCreditCard: ValidatorRule()
+    data class MustNotBeEmptyOrNull(val customErrorMessage: String? = null): ValidatorRule()
+    data class MustHaveLetterAndNumbers(val customErrorMessage: String? = null): ValidatorRule()
+    data class MustBeValidEmail(val customErrorMessage: String? = null): ValidatorRule()
+    data class MustBeValidCreditCard(val customErrorMessage: String? = null): ValidatorRule()
 
     data class MustBeBetweenTwoIntegers(val firstValue: Int, val secondValue: Int): ValidatorRule()
     data class MustBeBetweenTwoDates(val firstDate: Date, val secondDate: Date): ValidatorRule()
@@ -19,8 +19,8 @@ sealed class ValidatorRule {
     data class MustHaveMaximumLength(val size: Int): ValidatorRule()
 
     /** Canadian rules **/
-    object MustBeValidCanadianPostalCode: ValidatorRule()
+    data class MustBeValidCanadianPostalCode(val customErrorMessage: String? = null): ValidatorRule()
 
     /** Brazilian rules **/
-    object MustBeValidBrazilianCPF: ValidatorRule()
+    data class MustBeValidBrazilianCPF(val customErrorMessage: String? = null): ValidatorRule()
 }

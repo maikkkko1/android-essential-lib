@@ -10,7 +10,7 @@ class Validator constructor(private val value: Any?) {
             when (rule) {
                 is ValidatorRule.MustHaveLetterAndNumbers -> {
                     if (!containsLetterAndNumbers(value?.toString())) {
-                        return RuleValidationResult(isValid = false, message = "Must contain letters and numbers!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must contain letters and numbers!")
                     }
                 }
 
@@ -28,13 +28,13 @@ class Validator constructor(private val value: Any?) {
 
                 is ValidatorRule.MustNotBeEmptyOrNull -> {
                     if (value?.toString().isNullOrEmpty()) {
-                        return RuleValidationResult(isValid = false, message = "Must not be empty or null!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must not be empty or null!")
                     }
                 }
 
                 is ValidatorRule.MustBeValidEmail -> {
                     if (!isValidEmail(value?.toString())) {
-                        return RuleValidationResult(isValid = false, message = "Must be a valid email!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must be a valid email!")
                     }
                 }
 
@@ -73,19 +73,19 @@ class Validator constructor(private val value: Any?) {
 
                 is ValidatorRule.MustBeValidCreditCard -> {
                     if (!isValidCreditCard(value?.toString() ?: "")) {
-                        return RuleValidationResult(isValid = false, message = "Must be a valid credit card!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must be a valid credit card!")
                     }
                 }
 
                 is ValidatorRule.MustBeValidCanadianPostalCode -> {
                     if (!isValidCanadianPostalCode(value?.toString() ?: "")) {
-                        return RuleValidationResult(isValid = false, message = "Must be a valid canadian postal code!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must be a valid canadian postal code!")
                     }
                 }
 
                 is ValidatorRule.MustBeValidBrazilianCPF -> {
                     if (!isValidCPF(value?.toString() ?: "")) {
-                        return RuleValidationResult(isValid = false, message = "Must be a valid brazilian CPF!")
+                        return RuleValidationResult(isValid = false, message = rule.customErrorMessage ?: "Must be a valid brazilian CPF!")
                     }
                 }
 
