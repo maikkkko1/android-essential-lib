@@ -39,7 +39,7 @@ object FormValidator {
                         errorIconDrawable = errorIcon
 
                         error = validateForm.message
-                        if (isBorderlessInput) boxStrokeWidth = 2
+                        if (isBorderlessInput) boxStrokeWidth = 6
                     }
 
                     item.container.error = validateForm.message

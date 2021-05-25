@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         buttonMaterial.setOnClickListener {
-            val isValidForm = FormValidator.validate(materialInputsToValidate, true)
+            val isValidForm = FormValidator.validate(materialInputsToValidate, true, true)
 
             Toast.makeText(this, "Is Material Valid: ${isValidForm}", Toast.LENGTH_LONG).show()
         }
