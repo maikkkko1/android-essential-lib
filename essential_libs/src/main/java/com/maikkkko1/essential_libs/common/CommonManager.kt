@@ -9,26 +9,16 @@ import java.util.*
 
 class CommonManager(private val activity: Activity) {
     fun scheduleItemOnAndroidCalendar(scheduleItemAndroidCalendar: ScheduleItemAndroidCalendar) {
-        val startDate = Calendar.getInstance().apply {
-            scheduleItemAndroidCalendar.startDate.let {
-                set(it.year, it.month, it.day, it.hours, it.minutes)
+        scheduleItemAndroidCalendar.let {
+            val calendarIntent = Intent(Intent.ACTION_INSERT).apply {
+                data = CalendarContract.Events.CONTENT_URI
+                putExtra(CalendarContract.Events.TITLE, scheduleItemAndroidCalendar.eventTitle)
+                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, it.startDate.time)
+                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, it.endDate.time)
             }
-        }
 
-        val endDate = Calendar.getInstance().apply {
-            scheduleItemAndroidCalendar.endDate.let {
-                set(it.year, it.month, it.day, it.hours, it.minutes)
-            }
+            activity.startActivity(calendarIntent)
         }
-
-        val calendarIntent = Intent(Intent.ACTION_INSERT).apply {
-            data = CalendarContract.Events.CONTENT_URI
-            putExtra(CalendarContract.Events.TITLE, scheduleItemAndroidCalendar.eventTitle)
-            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startDate.timeInMillis)
-            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDate.timeInMillis)
-        }
-
-        activity.startActivity(calendarIntent)
     }
 
     fun openWebView(webUrl: String) {
